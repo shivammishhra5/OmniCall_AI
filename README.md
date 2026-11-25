@@ -6,9 +6,17 @@
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://omnicallai.kartikcomtech.in/)
 
-OmniCall AI is a cloud-based communication platform designed to bring voice calling, AI-powered conversations, telemarketing campaigns, SMS communication, contact management, and customer engagement into one ecosystem.
+OmniCall AI is a cloud-based communication platform that brings voice calling, AI-powered conversations, telemarketing campaigns, SMS communication, contact management, and customer engagement into one unified workspace.
 
-It combines configurable AI voice agents, automated calling workflows, telephony integrations, CRM-oriented contact management, follow-up sequences, and campaign analytics to help teams manage customer communication more efficiently.
+The platform combines configurable AI voice agents, automated calling workflows, telephony integrations, CRM-oriented contact management, follow-up sequences, and campaign analytics. Its modular integrations allow teams to configure AI, speech, telephony, messaging, and payment services according to their deployment requirements.
+
+### What You Can Do
+
+- **Automate conversations:** Configure AI agents for supported inbound and outbound calling workflows.
+- **Manage campaigns:** Organise contacts, launch calling or SMS campaigns, and schedule follow-ups.
+- **Connect services:** Integrate supported telephony, AI, speech, payment, and communication providers.
+- **Track activity:** Review call records, message activity, campaign progress, and usage information.
+- **Support human teams:** Configure human handoff and role-based access where enabled.
 
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white" alt="PHP 8.2+">
@@ -604,7 +612,7 @@ This is a high-level guide; individual modules and files may vary as the project
 
 ## Testing and Quality Assurance
 
-Use the following checks during development and before deployment. Run them from the project root.
+Quality checks should be run from the project root during development and before deployment. The commands below describe the available project checks; run them in your environment and review their output rather than assuming that a check has passed.
 
 ### Code and Build Checks
 
@@ -652,11 +660,19 @@ Validate the main user journeys in a staging environment with test accounts and 
 - [ ] Verify payment flows in test mode and validate webhook handling where enabled.
 - [ ] Test invalid credentials, provider timeouts, rate limits, and network failures.
 
-### Automated Test Coverage
+### Recommended Test Priorities
 
-Add and maintain application-level unit and feature tests as modules evolve. Prioritise authentication and permissions, contact management, campaign scheduling, telephony provider adapters, webhook validation, billing, and AI-service error handling. Mock external providers in automated tests so test runs never place real calls, send real SMS messages, or incur third-party charges.
+Maintain application-level unit and feature tests as the codebase evolves. The following areas are good candidates for focused automated coverage:
 
-Run the relevant checks before merging changes or publishing a release. Record actual test results in pull requests or release notes.
+1. **Authentication and authorisation:** Login, password reset, roles, permissions, and protected routes.
+2. **Contact management:** Validation, imports, exports, search, and duplicate handling.
+3. **Campaign workflows:** Scheduling, queue dispatch, retries, cancellation, and follow-up execution.
+4. **Telephony adapters:** Provider selection, call lifecycle events, status updates, and error handling.
+5. **Webhooks:** Signature verification, invalid payloads, duplicate events, and provider retries.
+6. **Billing and usage:** Credit calculations, payment callbacks, and usage recording.
+7. **AI services:** Missing credentials, unavailable models, timeouts, malformed responses, and rate limits.
+
+Mock external providers in automated tests so test runs do not place real calls, send real SMS messages, or incur third-party charges. Record the commands executed and their actual results in pull requests or release notes. Do not describe tests as passing unless they have been run successfully.
 
 ---
 
@@ -714,7 +730,7 @@ For provider-specific behaviour and deployment details, consult the documentatio
 
 ## Collaboration and Contributing
 
-A consistent contribution workflow helps keep the codebase maintainable and makes development easier to review.
+A clear contribution workflow makes changes easier to understand, review, and maintain. The following process is recommended for contributors working on this repository.
 
 1. Keep the `main` branch stable.
 2. Create a focused branch for each feature, fix, or documentation update (for example, `feature/ai-agent-setup` or `fix/call-status-handling`).
@@ -724,7 +740,12 @@ A consistent contribution workflow helps keep the codebase maintainable and make
 6. Update tests and documentation when application behaviour changes.
 7. Keep `CHANGELOG.md` updated for user-facing changes.
 
-Contributions are welcome when you have permission to work on this codebase.
+Contributions are welcome from people who have permission to work on this codebase. When opening a pull request, include:
+
+- A concise description of the problem and the proposed change.
+- Screenshots or logs when they help explain the update.
+- The tests and quality checks that were run, with their actual results.
+- Any configuration, migration, or documentation changes required.
 
 Please do not include credentials, customer data, call recordings, or other private information in commits or pull requests.
 
