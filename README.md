@@ -2,6 +2,10 @@
 
 **AI-Powered Voice Calling, Telemarketing & Communication Automation Platform**
 
+**Live Project:** [https://omnicallai.kartikcomtech.in/](https://omnicallai.kartikcomtech.in/)
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://omnicallai.kartikcomtech.in/)
+
 OmniCall AI is a cloud-based communication platform designed to bring voice calling, AI-powered conversations, telemarketing campaigns, SMS communication, contact management, and customer engagement into one ecosystem.
 
 It combines configurable AI voice agents, automated calling workflows, telephony integrations, CRM-oriented contact management, follow-up sequences, and campaign analytics to help teams manage customer communication more efficiently.
@@ -19,6 +23,7 @@ It combines configurable AI voice agents, automated calling workflows, telephony
 
 ## Table of Contents
 
+- [Live Demo](#live-demo)
 - [Overview](#overview)
 - [Key Features](#key-features)
 - [AI Voice and Calling Workflow](#ai-voice-and-calling-workflow)
@@ -39,6 +44,10 @@ It combines configurable AI voice agents, automated calling workflows, telephony
 - [License](#license)
 
 ---
+
+## Live Demo
+
+Explore the deployed OmniCall AI project: [https://omnicallai.kartikcomtech.in/](https://omnicallai.kartikcomtech.in/).
 
 ## Overview
 
@@ -582,7 +591,6 @@ A simplified view of the main Laravel application directories:
 ├── routes/
 ├── scripts/
 ├── storage/
-├── tests/
 ├── .env.example
 ├── artisan
 ├── composer.json
@@ -594,65 +602,61 @@ This is a high-level guide; individual modules and files may vary as the project
 
 ---
 
-## Quality Assurance and Validation
+## Testing and Quality Assurance
 
-OmniCall AI includes development and validation commands for checking the application build, frontend types, formatting, and code quality.
+Use the following checks during development and before deployment. Run them from the project root.
 
-### Available Validation Commands
-
-Run the following checks from the project root:
+### Code and Build Checks
 
 ```bash
-# Check PHP syntax and Laravel application bootstrapping
+# Confirm that Laravel boots and displays application information
 php artisan about
 
-# Validate TypeScript types
+# Run the Laravel test runner
+php artisan test
+
+# Check TypeScript types
 npm run types
 
 # Check frontend formatting
 npm run format:check
 
-# Build production frontend assets
+# Build optimized frontend assets
 npm run build
 
-# Apply PHP code formatting
+# Apply the PHP formatter
 ./vendor/bin/pint
 ```
 
-The repository also defines Laravel's standard test command:
+The project also provides a Composer test shortcut:
 
 ```bash
-php artisan test
-# or
 composer test
 ```
 
-**Test coverage status:** The supplied project archive does not contain a first-party `tests/` directory or application-specific PHPUnit/Pest test cases. The test command is configured, but a configured command alone does not mean that automated application tests have been written or passed. Third-party test files bundled inside `vendor/` are dependency tests and are not tests for OmniCall AI.
+### Application Verification Checklist
 
-### Recommended Application Smoke Tests
+Validate the main user journeys in a staging environment with test accounts and sandbox provider credentials:
 
-Before releasing a deployment, validate the following flows in a non-production environment using test accounts and provider credentials:
+- [ ] Sign in, sign out, password reset, and role-based access.
+- [ ] Create, update, import, export, and search contacts.
+- [ ] Configure an AI voice agent, its instructions, model, voice, and knowledge base.
+- [ ] Verify AI provider connectivity and handle unavailable-model responses.
+- [ ] Place an outbound test call through the selected telephony provider.
+- [ ] Verify inbound call handling when enabled.
+- [ ] Check speech-to-text transcription and text-to-speech playback.
+- [ ] Verify call termination and human handoff where configured.
+- [ ] Send and receive test SMS messages where supported.
+- [ ] Schedule a campaign and confirm queue processing and follow-up execution.
+- [ ] Review call records, recordings, campaign results, and access permissions.
+- [ ] Verify payment flows in test mode and validate webhook handling where enabled.
+- [ ] Test invalid credentials, provider timeouts, rate limits, and network failures.
 
-- [ ] User authentication, logout, password reset, and role-based access.
-- [ ] Contact creation, editing, import, export, and validation.
-- [ ] AI agent configuration, knowledge-base setup, and model connectivity.
-- [ ] Outbound test call using the selected telephony provider.
-- [ ] Inbound call handling, where enabled.
-- [ ] Speech-to-text and text-to-speech response flow.
-- [ ] Human handoff and call termination, where configured.
-- [ ] SMS sending, receiving, and delivery status, where supported.
-- [ ] Campaign scheduling, queue processing, and follow-up execution.
-- [ ] Call records, recordings, and analytics permissions.
-- [ ] Payment test-mode flow and webhook verification, where enabled.
-- [ ] Error handling for provider timeouts, invalid credentials, and unavailable services.
+### Automated Test Coverage
 
-Record the environment, test date, result, and any defects found when carrying out these checks. Do not describe a check as passed unless it has actually been performed.
+Add and maintain application-level unit and feature tests as modules evolve. Prioritise authentication and permissions, contact management, campaign scheduling, telephony provider adapters, webhook validation, billing, and AI-service error handling. Mock external providers in automated tests so test runs never place real calls, send real SMS messages, or incur third-party charges.
 
-### Future Automated Test Coverage
-
-For stronger regression protection, add first-party Laravel feature and unit tests for authentication, permissions, contact management, campaign scheduling, provider adapters, webhook validation, billing, and AI service error handling. Use mocked provider responses so automated tests do not place real calls, send real SMS messages, or incur third-party charges.
-
-Run the checks relevant to your changes before submitting a pull request.
+Run the relevant checks before merging changes or publishing a release. Record actual test results in pull requests or release notes.
 
 ---
 
@@ -710,25 +714,17 @@ For provider-specific behaviour and deployment details, consult the documentatio
 
 ## Collaboration and Contributing
 
-The repository archive supplied for this README does not include Git metadata, so its commit history and contributor activity cannot be verified from the source archive. A README cannot create genuine commit history or prove collaboration; those are reflected by the commits and pull requests made in the actual Git repository.
-
-For transparent team collaboration, use a workflow such as:
+A consistent contribution workflow helps keep the codebase maintainable and makes development easier to review.
 
 1. Keep the `main` branch stable.
-2. Assign each contributor a clearly scoped task or module.
-3. Create a separate branch for each feature or fix (for example, `feature/ai-agent-setup` or `fix/call-status-handling`).
-4. Commit work in small, meaningful changes with descriptive messages.
-5. Open pull requests that explain the change, link related issues, and identify the reviewer.
-6. Review and test changes before merging.
-7. Keep release notes and the changelog updated.
+2. Create a focused branch for each feature, fix, or documentation update (for example, `feature/ai-agent-setup` or `fix/call-status-handling`).
+3. Make small commits with clear messages describing the actual change.
+4. Open pull requests with a summary, relevant screenshots or logs, testing details, and linked issues where applicable.
+5. Request a review from another contributor before merging.
+6. Update tests and documentation when application behaviour changes.
+7. Keep `CHANGELOG.md` updated for user-facing changes.
 
-Contributions are welcome if you have permission to contribute to this codebase.
-
-1. Fork the repository or create a feature branch.
-2. Follow the existing Laravel and React/TypeScript conventions.
-3. Add or update first-party tests as coverage is introduced.
-4. Run the available validation checks.
-5. Open a pull request with a clear description of the change.
+Contributions are welcome when you have permission to work on this codebase.
 
 Please do not include credentials, customer data, call recordings, or other private information in commits or pull requests.
 
